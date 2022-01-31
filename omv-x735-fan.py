@@ -7,7 +7,7 @@ import time
 from gpiozero import OutputDevice
 
 SLEEP_INTERVAL = 3  # (seconds) How often we check the core temperature.
-GPIO_PIN = 17  # Which GPIO pin you're using to control the fan.
+GPIO_PIN = 13  # Which GPIO pin you're using to control the fan.
 
 def setup():
     global pwm
