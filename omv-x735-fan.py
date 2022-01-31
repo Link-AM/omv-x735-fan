@@ -29,31 +29,35 @@ def get_temp():
 
 def loop():
     temp = 0
-    if DEBUG_LOGGING: print('init temp to 0')
     while True:
         prevTemp = temp
-        if DEBUG_LOGGING: print('\nprevTemp: ', prevTemp)
         temp = get_temp()
         if DEBUG_LOGGING: print('Core temperature:', temp)
 
-        if temp >= 70 and prevTemp < 70:
-            if DEBUG_LOGGING: print('temp >= 70, setting fan speed to 100%, prevTemp: ', prevTemp)
-            pwm.ChangeDutyCycle(100)
-        elif temp >= 60 and (prevTemp < 60 or prevTemp >= 70):
-            if DEBUG_LOGGING: print('temp >= 60, setting fan speed to 80%, prevTemp: ', prevTemp)
-            pwm.ChangeDutyCycle(80)
-        elif temp >= 50 and (prevTemp < 50 or prevTemp >= 60):
-            if DEBUG_LOGGING: print('temp >= 50, setting fan speed to 60%, prevTemp: ', prevTemp)
-            pwm.ChangeDutyCycle(60)
-        elif temp >= 40 and (prevTemp < 40 or prevTemp >= 50):
-            if DEBUG_LOGGING: print('temp >= 40, setting fan speed to 40%, prevTemp: ', prevTemp)
-            pwm.ChangeDutyCycle(40)
-        elif temp >= 30 and (prevTemp < 30 or prevTemp >= 40):
-            if DEBUG_LOGGING: print('temp >= 30, setting fan speed to 20%, prevTemp: ', prevTemp)
-            pwm.ChangeDutyCycle(20)
-        elif temp < 30 and prevTemp >= 30:
-            if DEBUG_LOGGING: print('temp < 30, setting fan speed to 0%, prevTemp: ', prevTemp)
-            pwm.ChangeDutyCycle(0)
+        if temp >= 70:
+            if prevTemp < 70:
+                pwm.ChangeDutyCycle(100)
+                if DEBUG_LOGGING: print('Temp >= 70, setting fan speed to 100%. Previous temp: ', prevTemp)
+        elif temp >= 60:
+            if prevTemp < 60 or prevTemp >= 70:
+                pwm.ChangeDutyCycle(80)
+                if DEBUG_LOGGING: print('Temp >= 60, setting fan speed to 80%. Previous temp: ', prevTemp)
+        elif temp >= 50:
+            if prevTemp < 50 or prevTemp >= 60:
+                pwm.ChangeDutyCycle(60)
+                if DEBUG_LOGGING: print('Temp >= 50, setting fan speed to 60%, Previous temp: ', prevTemp)
+        elif temp >= 40:
+            if prevTemp < 40 or prevTemp >= 50:
+                pwm.ChangeDutyCycle(40)
+                if DEBUG_LOGGING: print('Temp >= 40, setting fan speed to 40%, Previous temp: ', prevTemp)
+        elif temp >= 30:
+            if prevTemp < 30 or prevTemp >= 40:
+                pwm.ChangeDutyCycle(20)
+                if DEBUG_LOGGING: print('Temp >= 30, setting fan speed to 20%, Previous temp: ', prevTemp)
+        elif temp < 30:
+            if prevTemp >= 30:
+                pwm.ChangeDutyCycle(0)
+                if DEBUG_LOGGING: print('Temp < 30, setting fan speed to 0%, Previous temp: ', prevTemp)
 
         time.sleep(SLEEP_INTERVAL)
 
