@@ -28,7 +28,7 @@ def get_temp():
 def loop():
     while True:
         temp = get_temp()
-        
+
         if temp > 70:
             pwm.ChangeDutyCycle(100)
         elif temp > 60:
