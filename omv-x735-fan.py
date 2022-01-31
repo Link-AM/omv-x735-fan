@@ -49,7 +49,8 @@ def loop():
         elif temp >= 30 and (prevTemp < 30 or prevTemp >= 40):
             if DEBUG_LOGGING: print('temp >= 30, setting fan speed to 20%')
             pwm.ChangeDutyCycle(20)
-        else:
+        elif temp < 30 and prevTemp >= 30:
+            if DEBUG_LOGGING: print('temp < 30, setting fan speed to 0%')
             pwm.ChangeDutyCycle(0)
 
         time.sleep(SLEEP_INTERVAL)
