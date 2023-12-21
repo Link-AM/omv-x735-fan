@@ -18,12 +18,12 @@ This shell script is used to start and stop the omv-x735-fan.py script as a serv
 This script is designed to be placed in /etc/init.d/ and run at startup.
 
 ## 📋 Requirements
-Python
-RPi.GPIO and gpiozero Python libraries
-Raspberry Pi with a fan connected to a GPIO pin
+1. Python
+1. RPi.GPIO and gpiozero Python libraries
+1. Raspberry Pi with a fan connected to a GPIO pin
 
 ## 🛠️ Installation
-To install the service, run the `install.sh` script with superuser privileges:
+To install the service, navigate to the project directory and then run the `install.sh` script with superuser privileges:
 
 ```bash
 sudo ./install.sh
@@ -33,7 +33,7 @@ This will copy the necessary files to their appropriate locations and tell the s
 To stop the service, use the following command:
 
 ```bash
-sudo ./omv-x735-fan.sh stop
+sudo /etc/init.d/omv-x735-fan.sh stop
 ```
 
 If you want to manually start the service after it has been stopped, you can do so with the following command:
